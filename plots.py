@@ -2,7 +2,7 @@ import sys; sys.path.insert(0,'/usr/local/lib/python2.7/dist-packages')
 import numpy as np
 import matplotlib.pyplot as plt
 
-fig = plt.figure()
+fig = plt.figure(figsize=(6.9,12))
 ax = fig.add_subplot(1,1,1)
 
 x = np.linspace(-10,10,1001)
