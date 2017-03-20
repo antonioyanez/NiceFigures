@@ -3,6 +3,7 @@
 \usepackage{fullpage}
 \usepackage{blindtext}
 \usepackage{graphicx}
+\usepackage{amsmath}
 
 %opening
 \title{Sample of including figures and general latex style}
@@ -15,11 +16,19 @@
 
 \section{Trying}
 
-\blindtext[7]
+\blindtext[5]
 
 \begin{figure}
+\begin{center}
 \includegraphics{figure.pdf}
-\caption{this is a sample legend}
+\caption{\blindtext[2]}
+\end{center}
 \end{figure}
+
+\begin{equation}
+\tau = 2 * \pi + V
+\end{equation}
+
+\blindtext[3]
 
 \end{document}
