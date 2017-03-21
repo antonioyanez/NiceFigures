@@ -5,32 +5,28 @@ from matplotlib import gridspec
 
 
 class MyFigure(object):
-    def __init__(self,figsize=(6.25,6.3),left=.12,bottom=.08):
+    def __init__(self,figsize=None,left=.12,bottom=.07):
         self.right = .99    # parameter, more difficult to move
-        self.top = .95    # parameter, more difficult to move
+        self.top = 1-.95    # parameter, more difficult to move
         self.left = left
         self.bottom = bottom
         self.fig = plt.figure(figsize=figsize,dpi=100)
 
     def make_axes(self,nrows=1,ncols=1):
-        # horizontal alignment
-        left = self.left
-        right = self.right
-        wspace = left / (right/ncols - left)
-        self.wspace = wspace
-        # vertical alignment
+        self.wspace = self.left / (self.right/ncols - self.left)
         self.hspace = self.bottom /(self.top/nrows - self.bottom )
+        self.hspace = (self.bottom+self.top) /(1./nrows - self.bottom-self.top )
         self.gs = gridspec.GridSpec(nrows,ncols,
-            hspace=self.hspace,wspace=wspace,
-            bottom=self.bottom,left=left,
-            top=self.top,right=right)
+            hspace=self.hspace,wspace=self.wspace,
+            bottom=self.bottom,left=self.left,
+            top=1-self.top,right=self.right)
         self.axes = [ self.fig.add_subplot(self.gs[i,j]) for i in range(nrows) 
                                         for j in range(ncols)]
     
         return self.gs
 
     def add_labels(self):
-        texts = [ ax.text(-.7*self.wspace,1+.3*self.hspace,chr(65+i),
+        texts = [ ax.text(-.7*self.wspace,1+.2*self.hspace,chr(65+i),
                         va='center',ha='center',
                         fontweight='bold',
                         transform=ax.transAxes) 
@@ -55,11 +51,13 @@ class PlayFig(MyFigure):
             ax.set_xlabel('t (ms)')
 
     
+aa = plt.style.use('/home/antonio/NiceFigures/antonio.mplstyle')
+if True:
+    #figs = [ PlayFig(j,i,show=False)  for j in range(1,6) for i in range(1,6) ]
+    #gs = figs[0].gs
+    #save = [ fig.fig.savefig('axes_{0:02d}.png'.format(i)) for i, fig in enumerate(figs) ]
 
-figs = [ PlayFig(i,j,show=False)  for j in range(1,6) for i in range(1,6) ]
-gs = figs[0].gs
-save = [ fig.fig.savefig('axes_{0:02d}.png'.format(i)) for i, fig in enumerate(figs) ]
-
-
+    ff = PlayFig(4,5)
+    ff.fig.savefig('figure.pdf')
 
 

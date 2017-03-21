@@ -1,0 +1,7 @@
+axes.linewidth: 1.3     # 0.8 default
+axes.spines.top: False
+axes.spines.right: False
+axes.labelweight: light
+figure.figsize: 6.25, 6.3
+font.size: 8
+font.weight: light  # left it gere
