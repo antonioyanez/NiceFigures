@@ -53,9 +53,9 @@ class PlayFig(MyFigure):
     
 aa = plt.style.use('/home/antonio/NiceFigures/antonio.mplstyle')
 if True:
-    #figs = [ PlayFig(j,i,show=False)  for j in range(1,6) for i in range(1,6) ]
-    #gs = figs[0].gs
-    #save = [ fig.fig.savefig('axes_{0:02d}.png'.format(i)) for i, fig in enumerate(figs) ]
+    figs = [ PlayFig(j,i,show=False)  for j in range(1,6) for i in range(1,6) ]
+    gs = figs[0].gs
+    save = [ fig.fig.savefig('axes_{0:02d}.png'.format(i)) for i, fig in enumerate(figs) ]
 
     ff = PlayFig(4,5)
     ff.fig.savefig('figure.pdf')
