@@ -12,18 +12,22 @@ class MyFigure(object):
         self.bottom = bottom
         self.fig = plt.figure(figsize=figsize,dpi=100)
 
-    def make_axes(self,nrows=1,ncols=1):
+    def grisspec(self,nrows=1,ncols=1):
         self.wspace = self.left / (self.right/ncols - self.left)
         self.hspace = self.bottom /(self.top/nrows - self.bottom )
         self.hspace = (self.bottom+self.top) /(1./nrows - self.bottom-self.top )
+        self.nrows = nrows
+        self.ncols = ncols
         self.gs = gridspec.GridSpec(nrows,ncols,
             hspace=self.hspace,wspace=self.wspace,
             bottom=self.bottom,left=self.left,
             top=1-self.top,right=self.right)
-        self.axes = [ self.fig.add_subplot(self.gs[i,j]) for i in range(nrows) 
-                                        for j in range(ncols)]
     
         return self.gs
+
+    def make_axes(self):
+        self.axes = [ self.fig.add_subplot(self.gs[i,j]) for i in range(nrows)
+                     for j in range(ncols)]
 
     def add_labels(self):
         texts = [ ax.text(-.7*self.wspace,1+.2*self.hspace,chr(65+i),
