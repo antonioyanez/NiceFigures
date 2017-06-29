@@ -52,7 +52,7 @@ class PlayFig(MyFigure):
 
     
 aa = plt.style.use('/home/antonio/NiceFigures/antonio.mplstyle')
-if True:
+if __name__ == '__main__':
     #figs = [ PlayFig(j,i,show=False)  for j in range(1,6) for i in range(1,6) ]
     #gs = figs[0].gs
     #save = [ fig.fig.savefig('axes_{0:02d}.png'.format(i)) for i, fig in enumerate(figs) ]
